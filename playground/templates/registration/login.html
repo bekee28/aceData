@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>ACE | Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'playground/assets/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Space Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <!-- Content -->
+      <div class="bg-soft-primary-light">
+        <div class="container content-space-1 content-space-t-md-3">
+          <div class="mx-auto" style="max-width: 30rem;">
+            <!-- Card -->
+            <div class="card card-lg zi-2">
+              <!-- Header -->
+              <div class="card-header text-center">
+                <h4 class="card-title">Log in</h4>
+                <p class="card-text">Don't have an account yet? <a class="link" href="/signup">Sign up here</a></p>
+              </div>
+              <!-- End Header -->
+
+              <!-- Card Body -->
+              <div class="card-body">
+                <form class="form" action="{% url 'login' %}" method = "post">
+                  {% csrf_token %}
+
+                  <div class="mb-4">
+                    <label class="form-label" for = "username">User/Business Name or Email</label> 
+                    <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="username or email " aria-label="username or email" required>
+                  </div>
+                  <!-- End Form -->
+
+                  <!-- Form -->
+                  <div class="mb-4">
+                      <label class="form-label" for="password">Password</label>
+                      <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="password" aria-label="password" required>
+                      <p></p>
+                      <a class="form-label-link" href="/reset-password">Forgot Password?</a>
+                  </div>
+                  <!-- End Form -->
+
+                  <!-- Checkbox -->
+                  <div class="form-check mb-4">
+                    <input type="checkbox" class="form-check-input" id="loginFormRememberMeCheck" name="loginFormRememberMeCheck">
+                    <label class="form-check-label" for="loginFormRememberMeCheck"> Remember me</label>
+                  </div>
+                  <!-- End Checkbox -->
+
+                  <div class="d-grid mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+                  </div>
+                  {% if form.non_field_errors %}
+                  <span class="invalid-feedback d-md-flex">{{ form.non_field_errors }}</span>
+                  {% endif %}
+                </form>
+              </div>
+              <!-- End Card Body -->
+            </div>
+            <!-- End Card -->
+          </div>
+        </div>
+      </div>
+      <!-- End Content -->
+
+      <!-- Shape -->
+      <div class="shape-container">
+        <div class="shape shape-bottom zi-1">
+          <svg viewBox="0 0 3000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 1000V583.723L3000 0V1000H0Z" fill="#fff"/>
+          </svg>
+        </div>
+      </div>
+      <!-- End Shape -->
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+        <!-- ========== FOOTER ========== -->
+        <footer class="bg-primary-dark border-top border-white-10">
+          <div class="container">
+            <div class="row content-space-1">
+              <div class="col-lg-3 mb-7 mb-lg-0">
+                <!-- Logo -->
+                <div class="mb-5">
+                  <a class="navbar-brand" href="/home" aria-label="ACE">
+                    <img class="navbar-brand-logo" src="{% static 'playground/assets/svg/logos/logo-white.svg' %}" alt="Image Description">
+                  </a>
+                </div>
+                <!-- End Logo -->
+    
+                <span class="d-block">
+                  <label for="selectLanguage" class="form-label text-white">Choose language</label>
+                </span>
+              
+                <!-- Button Group -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-soft-light btn-sm dropdown-toggle" id="selectLanguage" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="d-flex align-items-center">
+                      <img class="avatar avatar-xss avatar-circle me-2" src="{% static 'playground/assets/vendor/flag-icon-css/flags/1x1/us.svg' %}" alt="Image description" width="16"/>
+                      <span>English (US)</span>
+                    </span>
+                  </button>
+    
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item d-flex align-items-center active" href="#">
+                      <img class="avatar avatar-xss avatar-circle me-2" src="{% static 'playground/assets/vendor/flag-icon-css/flags/1x1/us.svg' %}" alt="Image description" width="16"/>
+                      <span>English (US)</span>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                      <img class="avatar avatar-xss avatar-circle me-2" src="{% static 'playground/assets/vendor/flag-icon-css/flags/1x1/gb.svg' %}" alt="Image description" width="16"/>
+                      <span>English (UK)</span>
+                    </a>
+                  </div>
+                </div>
+                <!-- End Button Group -->
+              </div>
+              <!-- End Col -->
+    
+              <div class="col-sm mb-7 mb-sm-0">
+                <span class="text-cap text-primary-light">Resources</span>
+    
+                <!-- List -->
+                <ul class="list-unstyled list-py-1 mb-0">
+                  <li><a class="link-sm link-light" href="/help-center">Support <i class="bi-box-arrow-up-right ms-1"></i></a></li>
+                  <li><a class="link-sm link-light" href="/contacts">Contacts</a></li>
+                </ul>
+                <!-- End List -->
+              </div>
+              <!-- End Col -->
+    
+              <div class="col-sm">
+                <span class="text-cap text-primary-light">Legal</span>
+    
+                <!-- List -->
+                <ul class="list-unstyled list-py-1 mb-5">
+                  <li><a class="link-sm link-light" href="/terms-of-use">Terms of use</a></li>
+                  <li><a class="link-sm link-light" href="/privacy">Privacy policy <i class="bi-box-arrow-up-right ms-1"></i></a></li>
+                </ul>
+                <!-- End List -->
+    
+            </div>
+            <!-- End Row -->
+    
+            <div class="border-top border-white-10"></div>
+    
+            <div class="row align-items-md-end py-5">
+              <div class="col-md mb-3 mb-md-0">
+                <p class="text-white mb-0">© ACE. All rights reserved.</p>
+              </div>
+    
+              <div class="col-md d-md-flex justify-content-md-end">
+                <!-- Socials -->
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item">
+                    <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                      <i class="bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                      <i class="bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                      <i class="bi-github"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                      <i class="bi-slack"></i>
+                    </a>
+                  </li>
+                </ul>
+                <!-- End Socials -->
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- ========== END FOOTER ========== -->
+
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+  </body>
+</html>

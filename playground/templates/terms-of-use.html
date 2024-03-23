@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Terms of Use | Ace</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'playground/assets/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Space Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body class="bg-light">
+
+    {% include "header.html" %}
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <!-- Content -->
+      <div class="container content-space-1 content-space-md-2">
+        <!-- Card -->
+        <div class="card card-lg">
+          <!-- Header -->
+          <div class="card-header bg-primary-dark position-relative overflow-hidden">
+            <h1 class="card-title h2 text-white">Terms of Use</h1>
+            <p class="card-text text-white">Last modified: Jan 1st, 2024</p>
+
+            <!-- Background Shapes -->
+            <div class="position-absolute" style="top: -6rem; left: -6rem;">
+              <img src="{% static 'playground/assets/svg/components/shape-1-soft-light.svg' %}" alt="SVG" width="500" style="width: 12rem;">
+            </div>
+            <div class="position-absolute" style="bottom: -6rem; right: -7rem;">
+              <img src="{% static 'playground/assets/svg/components/shape-7-soft-light.svg' %}" alt="SVG" width="250">
+            </div>
+            <!-- End Background Shapes -->
+          </div>
+          <!-- End Header -->
+
+          <!-- Card Body -->
+          <div class="card-body">
+            <div class="mb-7">
+              <h5>Introduction</h5>
+
+              <p>
+                Welcome to AceDAT.com (the "Website"). This Terms of Use Agreement ("Agreement") is a legal agreement between you ("User" or "you") and AceDAT ("we," "us," or "our"), the owner(s) of AceDAT.com. 
+                By accessing or using AceDAT.com, you agree to comply with and be bound by the terms and conditions outlined in this Agreement. 
+                If you do not agree to these terms, please do not use AceDAT.com.
+              </p>
+
+              <h6>Acceptance of Terms</h6>
+              <p>By using AceDAT.com, you acknowledge that you have read, understood, and agree to be bound by this Agreement. 
+                We reserve the right to update, change, or replace any part of this Agreement without prior notice. 
+                It is your responsibility to check this Agreement periodically for changes. 
+                Your continued use of AceDAT.com after the posting of any changes constitutes acceptance of those changes.
+              </p>
+
+              <h6>Use of the Website</h6>
+
+              <p>(a) You must be at least 18 years old to use AceDAT.com.</p>
+
+              <p>(b) You agree to use AceDAT.com for lawful purposes only and in a way that does not infringe upon the rights of any third party or inhibit others' use and enjoyment of AceDAT.com.</p>
+                
+              <p>(c) You agree not to engage in any conduct that could damage, disable, or overburden AceDAT.com or interfere with any other party's use of AceDAT.com.</p>
+
+              <h6>Content</h6>
+
+              <p>(a) All content on AceDAT.com, including but not limited to text, graphics, images, logos, and software, is the property of AceDAT or its content suppliers and is protected by international copyright laws.</p>
+
+              <p>(b) You may not modify, reproduce, distribute, display, perform, or otherwise use any content on AceDAT.com without our prior written permission.</p>
+
+              <h6>Privacy Policy</h6>
+
+              <p>Your use of AceDAT.com is also governed by our <a href="/privacy">Privacy Policy</a>.
+                 By using AceDAT.com, you agree to the terms outlined in our Privacy Policy.</p>
+
+              <h6>Disclaimer</h6>
+
+              <p>(a) AceDAT.com is provided "as is" and without any warranty or condition, express, implied, or statutory.</p>
+
+              <p>(b) We do not guarantee the accuracy, completeness, or timeliness of information on AceDAT.com.</p>
+
+              <h6>Limitation of Liability</h6>
+
+              <p>In no event shall AceDAT be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from 
+                <p>(a) your access to or use of or inability to access or use AceDAT.com; </p>
+                <p>(b) any unauthorized access to or use of our servers and/or any personal information stored therein.</p>
+              </p>
+
+              <h6>Governing Law</h6>
+
+              <p>This Agreement is governed by and construed in accordance with the laws of Califronia, without regard to its conflict of law principles.</p>
+
+              <h6>Contact Information</h6>
+
+              <p>If you have any questions about this Agreement, please <a href="/contacts">Contact us</a> .</p>
+
+            <p>By using AceDAT.com, you acknowledge that you have read and understood this Agreement and agree to be bound by its terms and conditions.
+              <a href="/home">AceDAT.com</a>
+            </p>
+
+          </div>
+          <!-- End Card Body -->
+        </div>
+        <!-- End Card -->
+      </div>
+      <!-- End Content -->
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    {% include "footer.html" %}
+
+    {% include "secondary.html" %}
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-go-to/dist/hs-go-to.min.js' %}"></script>
+
+    <!-- JS Space -->
+    <script src="{% static 'playground/assets/js/theme.min.js' %}"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+
+
+        // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        new HSShowAnimation('.js-animation-link')
+
+
+        // INITIALIZATION OF BOOTSTRAP VALIDATION
+        // =======================================================
+        HSBsValidation.init('.js-validate', {
+          onSubmit: data => {
+            data.event.preventDefault()
+            alert('Submited')
+          }
+        })
+
+
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        new HSGoTo('.js-go-to')
+      })()
+    </script>
+  </body>
+</html>

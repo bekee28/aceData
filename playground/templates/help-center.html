@@ -1,0 +1,371 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Help Center: Categories | Space - Multipurpose Responsive Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'playground/assests/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Space Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body>
+  {% include "header.html" %}
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <!-- Hero -->
+      <div class="bg-primary-dark overflow-hidden">
+        <div class="container position-relative content-space-1">
+          <div class="w-lg-75 mx-lg-auto">
+            <form>
+              <!-- Input Card -->
+              <div class="input-card">
+                <div class="input-card-form">
+                  <label for="searchAnswersForm" class="form-label visually-hidden">Search for answers</label>
+                  <input type="text" class="form-control" id="searchAnswersForm" placeholder="Search for answers" aria-label="Search for answers">
+                </div>
+                <button type="button" class="btn btn-primary">
+                  <i class="bi-search"></i>
+                </button>
+              </div>
+              <!-- End Input Card -->
+            </form>
+          </div>
+
+          <!-- Background Shapes -->
+          <div class="position-absolute" style="top: -6rem; left: -6rem;">
+            <img src="{% static 'playground/assets/svg/components/shape-1-soft-light.svg' %}" alt="SVG" width="500" style="width: 12rem;">
+          </div>
+          <div class="position-absolute" style="bottom: -6rem; right: -7rem;">
+            <img src="{% static 'playground/assets/svg/components/shape-7-soft-light.svg' %}" alt="SVG" width="250">
+          </div>
+          <!-- End Background Shapes -->
+        </div>
+      </div>
+      <!-- End Hero -->
+
+      <!-- Breadcrumb -->
+      <div class="border-bottom">
+        <div class="container py-4">
+          <div class="w-lg-75 mx-lg-auto">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                  <a href="./page-help-center.html">Help Center</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Getting started</li>
+              </ol>
+            </nav>
+            <!-- End Breadcrumb -->
+          </div>
+        </div>
+      </div>
+      <!-- End Breadcrumb -->
+
+      <!-- List -->
+      <div class="container content-space-1">
+        <div class="w-lg-75 mx-lg-auto">
+          <div class="row">
+            <div id="stickyBlockStartPoint" class="col-md-4 mb-3 mb-md-0">
+              <!-- Navbar -->
+              <div class="navbar-expand-md">
+                <!-- Navbar Toggle -->
+                <div class="d-grid">
+                  <button type="button" class="navbar-toggler btn btn-white mb-3" data-bs-toggle="collapse" data-bs-target="#navbarVerticalNavMenu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarVerticalNavMenu">
+                    <span class="d-flex justify-content-between align-items-center">
+                      <span class="h6 mb-0">Nav menu</span>
+
+                      <span class="navbar-toggler-default">
+                        <i class="bi-list"></i>
+                      </span>
+
+                      <span class="navbar-toggler-toggled">
+                        <i class="bi-x"></i>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+                <!-- End Navbar Toggle -->
+
+                <!-- Navbar Collapse -->
+                <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+                  <!-- Sticky Block -->
+                  <div class="js-sticky-block"
+                      data-hs-sticky-block-options='{
+                       "parentSelector": "#stickyBlockStartPoint",
+                       "targetSelector": "#header",
+                       "breakpoint": "md",
+                       "startPoint": "#stickyBlockStartPoint",
+                       "endPoint": "#stickyBlockEndPoint",
+                       "stickyOffsetTop": 20
+                     }'>
+                    <!-- List -->
+                    <ul class="nav nav-link-gray nav-tabs nav-vertical">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Top Solutions (5)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#">Getting Started (7)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Gulp (1)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Customization (1)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">License (4)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Payments (12)</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Purchasing (35)</a>
+                      </li>
+                    </ul>
+                    <!-- End List -->
+                  </div>
+                  <!-- End Sticky Block -->
+                </div>
+                <!-- End Navbar Collapse -->
+              </div>
+              <!-- End Navbar -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-md-8">
+              <!-- List -->
+              <ul class="list-unstyled list-py-2">
+                <li>
+                  <!-- Media -->
+                  <div class="d-sm-flex">
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                      <span class="svg-icon svg-icon-sm text-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#035A4B"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.591 13.209V14.868H11.851C14.392 14.868 16.387 12.915 16.387 10.395C16.387 7.875 14.392 5.922 11.851 5.922C9.31 5.922 7.336 7.875 7.336 10.395H9.121C9.121 8.799 10.234 7.581 11.851 7.581C13.447 7.581 14.602 8.799 14.602 10.395C14.602 11.991 13.447 13.209 11.851 13.209H10.591ZM12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z" fill="#035A4B"/>
+                        </svg>
+
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-sm-3">
+                      <div class="mb-5">
+                        <span class="text-cap">Getting Started</span>
+                        <h5>What methods of payments are supported?</h5>
+                        <p>You can purchase the themes on Bootstrap Themes via any major credit/debit card (via Stripe) or with your Paypal account. We don't support cryptocurrencies or invoicing at this time.</p>
+                      </div>
+
+                      <a class="link" href="./page-help-center-article.html">Read more <i class="bi-chevron-right small ms-1"></i></a>
+                    </div>
+                  </div>
+                  <!-- End Media -->
+                </li>
+
+                <li class="border-top my-5"></li>
+
+                <li>
+                  <!-- Media -->
+                  <div class="d-sm-flex">
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                      <span class="svg-icon svg-icon-sm text-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#035A4B"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.591 13.209V14.868H11.851C14.392 14.868 16.387 12.915 16.387 10.395C16.387 7.875 14.392 5.922 11.851 5.922C9.31 5.922 7.336 7.875 7.336 10.395H9.121C9.121 8.799 10.234 7.581 11.851 7.581C13.447 7.581 14.602 8.799 14.602 10.395C14.602 11.991 13.447 13.209 11.851 13.209H10.591ZM12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z" fill="#035A4B"/>
+                        </svg>
+
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-sm-3">
+                      <div class="mb-5">
+                        <span class="text-cap">Getting Started</span>
+                        <h5>How can I get a refund?</h5>
+                        <p>If you'd like a refund please reach out to us at themes@getbootstrap.com. If you need technical help with the theme before a refund please reach out to the seller first and they can get in touch with us if they're unable to resolve the issue.</p>
+                      </div>
+
+                      <a class="link" href="./page-help-center-article.html">Read more <i class="bi-chevron-right small ms-1"></i></a>
+                    </div>
+                  </div>
+                  <!-- End Media -->
+                </li>
+
+                <li class="border-top my-5"></li>
+
+                <li>
+                  <!-- Media -->
+                  <div class="d-sm-flex">
+                    <div class="flex-shrink-0 mb-3 mb-sm-0">
+                      <span class="svg-icon svg-icon-sm text-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#035A4B"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.591 13.209V14.868H11.851C14.392 14.868 16.387 12.915 16.387 10.395C16.387 7.875 14.392 5.922 11.851 5.922C9.31 5.922 7.336 7.875 7.336 10.395H9.121C9.121 8.799 10.234 7.581 11.851 7.581C13.447 7.581 14.602 8.799 14.602 10.395C14.602 11.991 13.447 13.209 11.851 13.209H10.591ZM12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z" fill="#035A4B"/>
+                        </svg>
+
+                      </span>
+                    </div>
+
+                    <div class="flex-grow-1 ms-sm-3">
+                      <div class="mb-5">
+                        <span class="text-cap">Getting Started</span>
+                        <h5>Which license do I need?</h5>
+                        <p>There are three license types - Standard, Multisite, and Extended. We've provided the table below for a quick look at the difference between the them, as well as a few examples of ways each license could be used.</p>
+                      </div>
+
+                      <a class="link" href="./page-help-center-article.html">Read more <i class="bi-chevron-right small ms-1"></i></a>
+                    </div>
+                  </div>
+                  <!-- End Media -->
+                </li>
+
+                <li class="border-top my-5"></li>
+              </ul>
+              <!-- End List -->
+
+              <!-- End Sticky End Point -->
+              <div id="stickyBlockEndPoint"></div>
+
+              <!-- Pagination -->
+              <nav class="row align-items-sm-center text-center text-sm-start" aria-label="Page navigation example">
+                <div class="col-sm-6 order-sm-2 text-sm-end mb-3 mb-sm-0">
+                  <small class="text-muted">Showing 3 of 3</small>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-sm-6">
+                  <ul class="pagination justify-content-center justify-content-sm-start mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Col -->
+              </nav>
+              <!-- End Pagination -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+      </div>
+      <!-- End List -->
+
+      <!-- CTA -->
+      <div class="container content-space-1 content-space-md-2">
+        <div class="w-lg-65 mx-lg-auto">
+          <div class="row align-items-sm-center">
+            <div class="col-sm-6 mb-5 mb-sm-0">
+              <div class="w-75 mx-auto">
+                <img class="img-fluid" src="{% static 'playground/assets/svg/illustrations/oc-sending.svg' %}" alt="Illustration">
+              </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-6">
+              <div class="ps-sm-5">
+                <div class="mb-sm-5">
+                  <h3>Can't find what you are looking for?</h3>
+                </div>
+
+                <a class="link" href="/contacts">Contact us <i class="bi-chevron-right small ms-1"></i></a>
+              </div>
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+      </div>
+      <!-- End CTA -->
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    {% include "footer.html" %}
+
+    {% include "secondary.html" %}
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-go-to/dist/hs-go-to.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js' %}"></script>
+
+    <!-- JS Space -->
+    <script src="{% static 'playground/assets/js/theme.min.js' %}"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+
+
+        // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        new HSShowAnimation('.js-animation-link')
+
+
+        // INITIALIZATION OF BOOTSTRAP VALIDATION
+        // =======================================================
+        HSBsValidation.init('.js-validate', {
+          onSubmit: data => {
+            data.event.preventDefault()
+            alert('Submited')
+          }
+        })
+
+
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        new HSGoTo('.js-go-to')
+
+
+        // INITIALIZATION OF STICKY BLOCKS
+        // =======================================================
+        Promise.all(Array.from(document.images)
+          .filter(img => !img.complete)
+          .map(img => new Promise(resolve => {
+            img.onload = img.onerror = resolve
+          })))
+          .then(() => {
+            new HSStickyBlock('.js-sticky-block', {
+              targetSelector: document.getElementById('header').classList.contains('navbar-fixed') ? '#header' : null
+            })
+          })
+      })()
+    </script>
+  </body>
+</html>

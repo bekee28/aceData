@@ -1,0 +1,141 @@
+    {% load static %}
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="navbar navbar-expand-lg navbar-light navbar-end bg-white">
+        <div class="container">
+          <nav class="js-mega-menu navbar-nav-wrap">
+            <!-- Default Logo -->
+            <a class="navbar-brand" href="/home" aria-label="Ace">
+              <img class="navbar-brand-logo" src="{% static 'playground/assets/svg/logos/logo.svg' %}" alt="Image Description">
+            </a>
+            <!-- End Default Logo -->
+  
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-default">
+                <i class="bi-list"></i>
+              </span>
+              <span class="navbar-toggler-toggled">
+                <i class="bi-x"></i>
+              </span>
+            </button>
+            <!-- End Toggler -->
+        
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <!-- Pages -->
+                <li class="hs-has-mega-menu nav-item">
+                  <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" aria-expanded="false">Explore</a>
+  
+                  <!-- Mega Menu -->
+                  <div class="hs-mega-menu hs-position-right dropdown-menu w-100" aria-labelledby="pagesMegaMenu" style="min-width: 42rem;">
+                    <!-- Main Content -->
+                    <div class="navbar-dropdown-menu-inner">
+                      <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                          <span class="dropdown-header">Company</span>
+                          <a class="dropdown-item " href="/about">About</a>
+                          <a class="dropdown-item " href="/services">Services</a>
+                          <a class="dropdown-item " href="/hire-us">Hire Us</a>
+                          <a class="dropdown-item " href="/contacts">Contacts</a>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0">
+                          <span class="dropdown-header invisible">Company</span>
+                          <a class="dropdown-item " href="/account">My Account</a>
+                          <a class="dropdown-item " href="/logout">Logout</a>
+                          <a class="dropdown-item " href="/change-password">Change Password</a>
+                          <a class="dropdown-item " href="/help-center">Help Center</a>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-3">
+                          <span class="dropdown-header">Specialty pages</span>
+                          <a class="dropdown-item " href="/pricing">Pricing</a>
+                          <a class="dropdown-item " href="/privacy">Privacy &amp; Policy</a>
+                          <a class="dropdown-item " href="/terms-of-use">Terms of Use</a>
+                        </div>
+                      </div>
+                      <!-- End Row -->
+                    </div>
+                    <!-- End Main Content -->
+                  </div>
+                  <!-- End Mega Menu -->
+                </li>
+                <!-- End Pages -->
+                <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">{{user.username}}!</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+  
+                {% else %}
+                <!-- Pages -->
+                <li class="hs-has-mega-menu nav-item">
+                  <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" aria-expanded="false">Explore</a>
+  
+                  <!-- Mega Menu -->
+                  <div class="hs-mega-menu hs-position-right dropdown-menu w-100" aria-labelledby="pagesMegaMenu" style="min-width: 42rem;">
+                    <!-- Main Content -->
+                    <div class="navbar-dropdown-menu-inner">
+                      <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                          <span class="dropdown-header">Company</span>
+                          <a class="dropdown-item " href="/about">About</a>
+                          <a class="dropdown-item " href="/services">Services</a>
+                          <a class="dropdown-item " href="/hire-us">Hire Us</a>
+                          <a class="dropdown-item " href="/contacts">Contacts</a>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0">
+                          <span class="dropdown-header invisible">Company</span>
+                          <a class="dropdown-item " href="/login">Log In</a>
+                          <a class="dropdown-item " href="/signup">Sign Up</a>
+                          <a class="dropdown-item " href="/password_reset">Forgot Password</a>
+                          <a class="dropdown-item " href="/help-center">Help Center</a>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-3">
+                          <span class="dropdown-header">Specialty pages</span>
+                          <a class="dropdown-item " href="/pricing">Pricing</a>
+                          <a class="dropdown-item " href="/privacy">Privacy &amp; Policy</a>
+                          <a class="dropdown-item " href="/terms-of-use">Terms of Use</a>
+                        </div>
+                      </div>
+                      <!-- End Row -->
+                    </div>
+                    <!-- End Main Content -->
+                  </div>
+                  <!-- End Mega Menu -->
+                </li>
+                <!-- End Pages -->
+  
+                <li class="nav-divider"></li>
+  
+                <!-- Log in -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/login"
+                     data-hs-show-animation-options='{
+                             "targetSelector": "#signupModalFormLogin",
+                             "groupName": "idForm"
+                           }'>Log in</a>
+                </li>
+                <!-- End Log in -->
+  
+                <!-- Sign up -->
+                <li class="nav-item">
+                  <a class="nav-link" href="/signup"
+                     data-hs-show-animation-options='{
+                             "targetSelector": "#signupModalFormSignup",
+                             "groupName": "idForm"
+                           }'>
+                    <i class="bi-person-circle me-1"></i> Sign up
+                  </a>
+                </li>
+                <!-- End Sign up -->
+                {% endif %}
+              </ul>
+            </div>
+            <!-- End Collapse -->
+          </nav>
+        </div>
+      </header>
+  
+      <!-- ========== END HEADER ========== -->

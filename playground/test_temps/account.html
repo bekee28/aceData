@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Page</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <p>Email: {{ user_profile.email }}</p>
+    <!-- Display other profile information as needed -->
+
+    <h2>Purchase History</h2>
+    <ul>
+        {% for purchase in purchase_history %}
+            <li>{{ purchase.item_name }} - ${{ purchase.amount_paid }} - {{purchase.date_of_purchase}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
