@@ -209,8 +209,8 @@ rotated the secrets (§1) so you're entering fresh values below.
    - `STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY` — your **live** keys.
    - `STRIPE_WEBHOOK_SECRET` — added in step 6.
    - `EMAIL_HOST`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` — see step 5.
-3. **First deploy.** Render runs the build (`pip install` + `collectstatic`),
-   then `preDeployCommand` (`migrate`), then starts gunicorn. Watch the logs
+3. **First deploy.** Render runs the build (`pip install` + `collectstatic` +
+   `migrate`), then starts gunicorn (bound to `0.0.0.0:$PORT`). Watch the logs
    until it's live on the temporary `…onrender.com` URL (auto-allowed via
    `RENDER_EXTERNAL_HOSTNAME`). Visit it to confirm the site renders.
 4. **Create the admin user.** Service → **Shell**:

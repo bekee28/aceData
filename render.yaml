@@ -16,8 +16,10 @@ services:
     plan: starter                # "free" sleeps + cold-starts (bad for the Stripe webhook)
     region: oregon               # pick the region closest to your users
     branch: aceDataMain          # deploy branch (merge the cleanup PR into this first)
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
-    preDeployCommand: "python manage.py migrate"
+    # migrate runs in the build (not preDeployCommand, which is paid-plan-only and
+    # was being skipped) so the schema is applied on every deploy and any DB
+    # connection error surfaces in the build logs.
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --noinput"
     startCommand: "gunicorn project.wsgi:application --bind 0.0.0.0:$PORT"
     healthCheckPath: /
     envVars:
