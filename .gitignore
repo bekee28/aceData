@@ -13,8 +13,10 @@ env/
 ENV/
 *.egg-info/
 .eggs/
-build/
-dist/
+# Anchored to the repo root so these only match Python build artifacts, NOT the
+# theme's vendor asset folders (e.g. playground/static/.../vendor/<lib>/dist/...).
+/build/
+/dist/
 
 # Django
 db.sqlite3
