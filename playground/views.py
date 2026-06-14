@@ -101,6 +101,12 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     #                   "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('password_reset_sent')
 
+    @property
+    def extra_email_context(self):
+        # Build the reset link against the configured public host (BASE_URL —
+        # acedataworks.com in prod) rather than a hard-coded/localhost value.
+        return {'base_url': settings.BASE_URL}
+
 
 def reset_sent(request):
     return render(request, 'password_reset_sent.html')
