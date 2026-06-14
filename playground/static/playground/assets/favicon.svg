@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ACE">
+  <rect width="64" height="64" rx="14" fill="#1E2022"/>
+  <!-- "A" -->
+  <path d="M18.1 51.2 L32 12.9 L45.9 51.2" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- upward trendline crossbar -->
+  <polyline points="23,49 32,37.5 38,44.5 45.46,30.61" fill="none" stroke="#00A57E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="49,24 50.31,33.21 40.61,28.01" fill="#00A57E"/>
+</svg>

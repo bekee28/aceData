@@ -1,12 +1,15 @@
 from django.contrib import admin
 from .models import CustomUser, Purchase
 from django.contrib.auth.admin import UserAdmin
-#from django.contrib.auth.admin import UserAdmin
-#from .models import Purchase
 
-# Register the custom user model with the admin site
-#admin.site.register(CustomUser)
-admin.site.register(Purchase)
+
+@admin.register(Purchase)
+class PurchaseAdmin(admin.ModelAdmin):
+    list_display = ('item_name', 'user', 'user_name', 'amount_paid', 'date_of_purchase', 'time_of_purchase')
+    list_filter = ('item_name', 'date_of_purchase')
+    search_fields = ('user__username', 'user_name', 'item_name')
+    raw_id_fields = ('user',)
+    ordering = ('-date_of_purchase', '-time_of_purchase')
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):

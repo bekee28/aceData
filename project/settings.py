@@ -11,25 +11,60 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
-from pathlib import Path 
+from pathlib import Path
+
+import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-BASE_URL = 'localhost:8000'
+# Load environment variables from a .env file at the project root (if present).
+# Secrets and environment-specific config live there, never in version control.
+load_dotenv(BASE_DIR / '.env')
 
+BASE_URL = os.environ.get('BASE_URL', 'localhost:8000')
+
+
+def env_bool(name, default=False):
+    """Read a boolean-ish environment variable ('1', 'true', 'yes')."""
+    return os.environ.get(name, str(default)).strip().lower() in ('1', 'true', 'yes', 'on')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f*rrm78cxmf592%y#&#x3yq3&@rr*0=cqt@s)ml4v*5@_(((5y'
+# Set DJANGO_SECRET_KEY in the environment for any non-local deployment.
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-dev-only-key-change-me-via-env-3yq3rr0cqts)ml4v',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if host.strip()
+]
+
+# Render sets RENDER_EXTERNAL_HOSTNAME to the service's *.onrender.com host;
+# allow it automatically so the app works before the custom domain is attached.
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Origins trusted for CSRF (must include the scheme). Needed for POST forms when
+# running behind a TLS-terminating proxy (login, logout, contact, change password).
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',')
+    if origin.strip()
+]
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
 
 
 # Application definition
@@ -40,14 +75,17 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    'bootstrap5',
+    'django_bootstrap5',
     'crispy_bootstrap5',
     'crispy_forms',
     'django.contrib.sites',
     'django.contrib.sessions',
     'playground.apps.PlaygroundConfig',
 ]
+
+# Debug toolbar is a development-only tool — never load it in production.
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -56,8 +94,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 SITE_ID = 1
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    # WhiteNoise serves static files directly from the app in production.
+    # It must sit immediately after SecurityMiddleware.
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,6 +105,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Debug toolbar middleware is development-only; load it just below SecurityMiddleware.
+if DEBUG:
+    MIDDLEWARE.insert(1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 INTERNAL_IPS = [
     # ...
@@ -96,11 +140,13 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Reads DATABASE_URL when set (e.g. Render's managed Postgres) and falls back to
+# the local SQLite file for development and tests, so local behavior is unchanged.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+    )
 }
 
 
@@ -149,6 +195,20 @@ STATICFILES_DIRS = [
 #STATIC_ROOT = os.path.join(BASE_DIR, 'playground/static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'playground/staticfiles')
 
+# In production, serve `collectstatic` output through WhiteNoise with compression
+# and hashed filenames for far-future caching. In dev we keep Django's default
+# static storage so the site works without first running `collectstatic`
+# (the hashed-manifest backend errors when no manifest exists yet).
+if not DEBUG:
+    STORAGES = {
+        'default': {
+            'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        },
+        'staticfiles': {
+            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        },
+    }
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -157,21 +217,53 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'playground.CustomUser'
 
 
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-STRIPE_PUBLIC_KEY = 'pk_test_51NOGA5Bx0R9n4Zp1mtWsC1KD9OfZ4xNU4uXiqOWR5Gn52SWBSgvOUDpjqStkYuF02iBPtrtbOZbtzKR7KM0b5Wdx00zYDLE50J'
-STRIPE_SECRET_KEY = 'sk_test_51NOGA5Bx0R9n4Zp1IoAR5pNhgIqCKLkdOpnUmzgfSHkTkOwsQdIayFy68P7swxHG3Z6G4q4BaffdFNGewAa1Hxmw00bbp5PyLD'
-STRIPE_WEBHOOK_SECRET = 'whsec_6eee92fec68e8e03cc2244abb6dc249e07fa7198449b64a99412c21871243ae0'
+# Stripe — all keys come from the environment. See .env.example.
+# NOTE: the test keys previously committed to this repo are PUBLIC and must be
+# rotated in the Stripe dashboard before any further use.
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+
+# Checkout pricing is defined inline (Stripe `price_data`), so no pre-created
+# Stripe Products/Prices are required. Amounts are in the smallest currency unit
+# (cents) and are overridable per environment.
+STRIPE_CURRENCY = os.environ.get('STRIPE_CURRENCY', 'usd')
+
+# Tier 1 (Discovery) is free and does not go through Stripe.
+# Tier 2 (Build): consultation + 1 hour implementation.
+# Tier 3 (Build Pro): consultation + 3 hours implementation.
+TIER_2_NAME = os.environ.get('TIER_2_NAME', 'Build')
+TIER_2_AMOUNT = int(os.environ.get('TIER_2_AMOUNT_CENTS', '14900'))  # $149.00
+TIER_3_NAME = os.environ.get('TIER_3_NAME', 'Build Pro')
+TIER_3_AMOUNT = int(os.environ.get('TIER_3_AMOUNT_CENTS', '34900'))  # $349.00
+
+# Email — defaults to the console backend (prints emails to stdout) for local dev.
+# Set EMAIL_BACKEND to the SMTP backend and provide credentials via env for real sending.
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'aluo.e28@gmail.com')
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS = env_bool('EMAIL_USE_TLS', True)
+EMAIL_USE_SSL = env_bool('EMAIL_USE_SSL', False)
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'aluo.e28@gmail.com'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'aluo.e28@gmail.com'
-# EMAIL_HOST_PASSWORD = 'cstexixnwdywrtkf'
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
+# Production security hardening.
+# These are only applied when DEBUG is off, so local development is unaffected.
+# Requires the site to be served over HTTPS behind a proxy that sets
+# X-Forwarded-Proto (typical for managed hosts); adjust if your setup differs.
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = env_bool('DJANGO_SECURE_SSL_REDIRECT', True)
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = int(os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '31536000'))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
 

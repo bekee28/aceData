@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Checkout canceled | ACE Data</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'playground/assets/favicon.svg' %}">
+    <link rel="alternate icon" href="{% static 'playground/assets/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body>
+    {% include "header.html" %}
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <div class="container content-space-2 content-space-lg-3">
+        <div class="w-md-75 w-lg-50 text-center mx-md-auto">
+          <span class="display-3 text-warning mb-3 d-block"><i class="bi-cart-x"></i></span>
+          <h1 class="text-primary">Your checkout was canceled</h1>
+          <p class="lead">No charge was made. Forgot something, or want to compare plans first? You can pick up right where you left off.</p>
+
+          <div class="d-grid d-sm-flex gap-3 justify-content-sm-center mt-7">
+            <a class="btn btn-primary btn-lg" href="{% url 'checkout' %}">
+              <i class="bi-arrow-left me-1"></i> Back to checkout
+            </a>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'pricing' %}">View pricing</a>
+          </div>
+
+          <p class="small text-muted mt-5">
+            Need a hand deciding? <a href="{% url 'contacts' %}">Talk to us</a> and we'll point you to the right plan.
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    {% include "footer.html" %}
+
+    {% include "secondary.html" %}
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-go-to/dist/hs-go-to.min.js' %}"></script>
+
+    <!-- JS Template -->
+    <script src="{% static 'playground/assets/js/theme.min.js' %}"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+        new HSShowAnimation('.js-animation-link')
+        new HSGoTo('.js-go-to')
+      })()
+    </script>
+  </body>
+</html>
