@@ -247,7 +247,7 @@ TIER_3_AMOUNT = int(os.environ.get('TIER_3_AMOUNT_CENTS', '34900'))  # $349.00
 # Email — defaults to the console backend (prints emails to stdout) for local dev.
 # Set EMAIL_BACKEND to the SMTP backend and provide credentials via env for real sending.
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'aluo.e28@gmail.com')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'contact@acedataworks.com')
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
