@@ -1,16 +1,13 @@
 # Render Blueprint for the ACE site (acedataworks.com).
 # Apply via Render Dashboard -> "New +" -> "Blueprint" and point it at this repo.
-# Secret values (Stripe, email password) use `sync: false` so Render prompts you
-# to enter them in the dashboard — they are never stored in this file / git.
+# Secret values (Stripe, email password, DATABASE_URL) use `sync: false` so Render
+# prompts you in the dashboard — they are never stored in this file / git.
+#
+# The database is an external free Neon Postgres (not a Render-managed DB): create
+# a Neon project, then paste its connection string as DATABASE_URL when prompted.
 #
 # NOTE: Render plan names and Python versions drift over time — verify the
 # current values against Render's docs before applying.
-
-databases:
-  - name: acedata-db
-    databaseName: acedata
-    user: acedata
-    plan: basic-256mb            # smallest paid tier; use "free" only for testing (it expires)
 
 services:
   - type: web
@@ -24,10 +21,8 @@ services:
     startCommand: "gunicorn project.wsgi:application"
     healthCheckPath: /
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: acedata-db
-          property: connectionString
+      - key: DATABASE_URL         # paste the Neon connection string (postgres://...) in the dashboard
+        sync: false
       - key: DJANGO_SECRET_KEY
         generateValue: true       # Render generates a strong key
       - key: DJANGO_DEBUG
