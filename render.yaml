@@ -18,7 +18,7 @@ services:
     branch: aceDataMain          # deploy branch (merge the cleanup PR into this first)
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
     preDeployCommand: "python manage.py migrate"
-    startCommand: "gunicorn project.wsgi:application"
+    startCommand: "gunicorn project.wsgi:application --bind 0.0.0.0:$PORT"
     healthCheckPath: /
     envVars:
       - key: DATABASE_URL         # paste the Neon connection string (postgres://...) in the dashboard
