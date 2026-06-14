@@ -146,6 +146,10 @@ DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
+        # Revalidate a reused connection at the start of each request and reconnect
+        # if it was dropped — important for serverless Postgres (Neon) that suspends
+        # when idle, so the first request after a wake-up doesn't error.
+        conn_health_checks=True,
     )
 }
 
