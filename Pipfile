@@ -4,8 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = ">=4.2,<5.0"
 django-debug-toolbar = "*"
+django-bootstrap5 = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
+stripe = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

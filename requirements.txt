@@ -1,0 +1,14 @@
+# aceData — Python dependencies
+# Install with:  pip install -r requirements.txt
+Django>=4.2,<5.0
+django-debug-toolbar>=4.0
+django-bootstrap5>=23.0
+django-crispy-forms>=2.0
+crispy-bootstrap5>=0.7
+stripe>=7.0
+python-dotenv>=1.0
+whitenoise>=6.0
+# Production server + database
+gunicorn>=21.0
+psycopg[binary]>=3.1
+dj-database-url>=2.1

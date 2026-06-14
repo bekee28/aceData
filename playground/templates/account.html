@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>My Account | ACE Data</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'playground/assets/favicon.svg' %}">
+    <link rel="alternate icon" href="{% static 'playground/assets/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body>
+    {% include "header.html" %}
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <!-- Profile Header -->
+      <div class="bg-soft-primary-light">
+        <div class="container content-space-t-2 content-space-t-lg-3 content-space-b-1">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="d-flex align-items-center">
+                <div class="avatar avatar-xl avatar-circle avatar-primary me-3">
+                  <span class="avatar-initials">{{ user_profile.username|first|upper }}</span>
+                </div>
+                <div>
+                  <h1 class="h2 mb-0">{{ user_profile.username }}</h1>
+                  <p class="mb-0">{{ user_profile.email|default:"No email on file" }}</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-auto">
+              <a class="btn btn-soft-primary btn-sm" href="{% url 'change_password' %}">
+                <i class="bi-key me-1"></i> Change password
+              </a>
+              <form method="post" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary btn-sm">
+                  <i class="bi-box-arrow-right me-1"></i> Log out
+                </button>
+              </form>
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+      </div>
+      <!-- End Profile Header -->
+
+      <div class="container content-space-1 content-space-md-2">
+        <div class="row">
+          <!-- Profile details -->
+          <div class="col-lg-4 mb-7 mb-lg-0">
+            <div class="card card-lg">
+              <div class="card-header">
+                <h4 class="card-title">Profile details</h4>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled list-py-2 mb-0">
+                  <li class="d-flex justify-content-between">
+                    <span class="text-muted">Username</span>
+                    <span>{{ user_profile.username }}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <span class="text-muted">Email</span>
+                    <span>{{ user_profile.email|default:"Not set" }}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <span class="text-muted">Member since</span>
+                    <span>{{ user_profile.date_joined|date:"M j, Y" }}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <span class="text-muted">Last login</span>
+                    <span>{{ user_profile.last_login|date:"M j, Y"|default:"Not set" }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End Profile details -->
+
+          <!-- Purchase history -->
+          <div class="col-lg-8">
+            <div class="card card-lg">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">Purchase history</h4>
+                <a class="btn btn-primary btn-sm" href="{% url 'pricing' %}">
+                  <i class="bi-bag-plus me-1"></i> Buy a service
+                </a>
+              </div>
+              <div class="card-body">
+                {% if purchase_history %}
+                <div class="table-responsive">
+                  <table class="table table-borderless table-align-middle mb-0">
+                    <thead class="table-text-center">
+                      <tr>
+                        <th scope="col">Service</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for purchase in purchase_history %}
+                      <tr>
+                        <td>{{ purchase.item_name }}</td>
+                        <td>${{ purchase.amount_paid }}</td>
+                        <td>{{ purchase.date_of_purchase|date:"M j, Y"|default:"Not set" }}</td>
+                        <td>{{ purchase.time_of_purchase|default:"Not set" }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                {% else %}
+                <!-- Empty state -->
+                <div class="text-center py-5">
+                  <img class="avatar avatar-xl mb-3" src="{% static 'playground/assets/svg/illustrations/oc-money-profits.svg' %}" alt="No purchases" onerror="this.style.display='none'">
+                  <h5>No purchases yet</h5>
+                  <p class="text-muted">When you buy one of our data services it will show up here.</p>
+                  <a class="btn btn-primary" href="{% url 'pricing' %}">View pricing</a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- End Purchase history -->
+        </div>
+        <!-- End Row -->
+      </div>
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    {% include "footer.html" %}
+
+    {% include "secondary.html" %}
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-go-to/dist/hs-go-to.min.js' %}"></script>
+
+    <!-- JS Template -->
+    <script src="{% static 'playground/assets/js/theme.min.js' %}"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+
+        // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        new HSShowAnimation('.js-animation-link')
+
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        new HSGoTo('.js-go-to')
+      })()
+    </script>
+  </body>
+</html>

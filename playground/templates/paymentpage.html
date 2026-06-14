@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="">
+  <head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Checkout | ACE Data</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'playground/assets/favicon.svg' %}">
+    <link rel="alternate icon" href="{% static 'playground/assets/favicon.ico' %}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css' %}">
+
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="{% static 'playground/assets/css/theme.min.css' %}">
+  </head>
+
+  <body>
+    {% include "header.html" %}
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+      <div class="bg-soft-primary-light">
+        <div class="container content-space-t-2 content-space-t-lg-3 content-space-b-1">
+          <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5">
+            <h1 class="text-primary">Complete your purchase</h1>
+            <p class="lead">Choose the service tier that fits your needs. You'll be redirected to our secure Stripe checkout.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container content-space-1 content-space-md-2">
+        <div class="row justify-content-center gx-3">
+          <!-- Tier 1: Discovery (free) -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card card-lg h-100">
+              <div class="card-body">
+                <span class="d-block display-5 text-dark mb-2"><i class="bi-chat-dots text-primary"></i></span>
+                <h3 class="card-title">Discovery</h3>
+                <p class="card-text">A free, no-obligation consultation to scope your data challenge.</p>
+                <div class="border-top my-4"></div>
+                <span class="display-4 text-dark">Free</span>
+                <span class="d-block text-muted mb-4">30-minute call</span>
+                <ul class="list-checked list-checked-primary mb-4">
+                  <li class="list-checked-item">30-minute consultation</li>
+                  <li class="list-checked-item">Problem &amp; goal scoping</li>
+                  <li class="list-checked-item">Recommended next steps</li>
+                </ul>
+              </div>
+              <div class="card-footer">
+                <div class="d-grid">
+                  <a href="{% url 'contacts' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="bi-calendar-check me-1"></i> Book free consultation
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Tier 1 -->
+
+          <!-- Tier 2: Build (1 hour) -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card card-lg h-100 border-primary">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="display-5 text-dark"><i class="bi-tools text-primary"></i></span>
+                  <span class="badge bg-primary text-white rounded-pill">Most popular</span>
+                </div>
+                <h3 class="card-title">Build</h3>
+                <p class="card-text">Consultation plus a focused, hands-on build session.</p>
+                <div class="border-top my-4"></div>
+                <span class="display-4 text-dark">$149</span>
+                <span class="d-block text-muted mb-4">one-time</span>
+                <ul class="list-checked list-checked-primary mb-4">
+                  <li class="list-checked-item">Everything in Discovery</li>
+                  <li class="list-checked-item">1 hour implementation/build</li>
+                  <li class="list-checked-item">Working deliverable you keep</li>
+                </ul>
+              </div>
+              <div class="card-footer">
+                {% if user.is_authenticated %}
+                <form action="{% url 'tier2' %}" method="POST" class="d-grid">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi-lock me-1"></i> Checkout · $149
+                  </button>
+                </form>
+                {% else %}
+                <div class="d-grid">
+                  <a href="{% url 'login' %}?next={% url 'checkout' %}" class="btn btn-primary btn-lg">
+                    <i class="bi-person me-1"></i> Log in to purchase
+                  </a>
+                  <span class="d-block text-center text-muted small mt-2">A free account is required to purchase.</span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- End Tier 2 -->
+
+          <!-- Tier 3: Build Pro (3 hours) -->
+          <div class="col-md-4">
+            <div class="card card-lg h-100">
+              <div class="card-body">
+                <span class="d-block display-5 text-dark mb-2"><i class="bi-rocket-takeoff text-primary"></i></span>
+                <h3 class="card-title">Build Pro</h3>
+                <p class="card-text">Consultation plus an extended build for larger or multi-step work.</p>
+                <div class="border-top my-4"></div>
+                <span class="display-4 text-dark">$349</span>
+                <span class="d-block text-muted mb-4">one-time</span>
+                <ul class="list-checked list-checked-primary mb-4">
+                  <li class="list-checked-item">Everything in Discovery</li>
+                  <li class="list-checked-item">3 hours implementation/build</li>
+                  <li class="list-checked-item">Working deliverable you keep</li>
+                  <li class="list-checked-item">Priority scheduling</li>
+                </ul>
+              </div>
+              <div class="card-footer">
+                {% if user.is_authenticated %}
+                <form action="{% url 'tier3' %}" method="POST" class="d-grid">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-primary btn-lg">
+                    <i class="bi-lock me-1"></i> Checkout · $349
+                  </button>
+                </form>
+                {% else %}
+                <div class="d-grid">
+                  <a href="{% url 'login' %}?next={% url 'checkout' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="bi-person me-1"></i> Log in to purchase
+                  </a>
+                  <span class="d-block text-center text-muted small mt-2">A free account is required to purchase.</span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- End Tier 3 -->
+        </div>
+        <!-- End Row -->
+
+        <div class="text-center mt-5">
+          <p class="small text-muted">
+            <i class="bi-shield-lock me-1"></i>
+            Payments are processed securely by Stripe. We never see or store your card details.
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    {% include "footer.html" %}
+
+    {% include "secondary.html" %}
+
+    <!-- JS Global Compulsory  -->
+    <script src="{% static 'playground/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{% static 'playground/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js' %}"></script>
+    <script src="{% static 'playground/assets/vendor/hs-go-to/dist/hs-go-to.min.js' %}"></script>
+
+    <!-- JS Template -->
+    <script src="{% static 'playground/assets/js/theme.min.js' %}"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+        new HSShowAnimation('.js-animation-link')
+        new HSGoTo('.js-go-to')
+      })()
+    </script>
+  </body>
+</html>
