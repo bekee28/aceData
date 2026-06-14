@@ -256,6 +256,26 @@ EMAIL_USE_TLS = env_bool('EMAIL_USE_TLS', True)
 EMAIL_USE_SSL = env_bool('EMAIL_USE_SSL', False)
 
 
+# Logging — send everything to stderr/stdout so the hosting platform (Render)
+# captures it. Crucially, log unhandled request errors (500 tracebacks) to the
+# console even when DEBUG=False; Django's default config hides them in production.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {'format': '[{asctime}] {levelname} {name}: {message}', 'style': '{'},
+    },
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'verbose'},
+    },
+    'root': {'handlers': ['console'], 'level': 'INFO'},
+    'loggers': {
+        # 500s and other request errors, with full traceback.
+        'django.request': {'handlers': ['console'], 'level': 'ERROR', 'propagate': False},
+    },
+}
+
+
 # Production security hardening.
 # These are only applied when DEBUG is off, so local development is unaffected.
 # Requires the site to be served over HTTPS behind a proxy that sets
